@@ -1,4 +1,3 @@
-
 const Footer = () => {
   return (
     <>
@@ -6,6 +5,15 @@ const Footer = () => {
         <div className="container mx-auto mt-5 p-5 flex flex-col justify-center items-center text-textlightWhite space-y-3">
           <h4 className="text-lg font-mono">Build By - Ajit Patil</h4>
           <ul className="w-full flex justify-center gap-6 items-center">
+            <li className="cursor-pointer hover:text-textgreen">
+              <a href="mailto:patilajit020@gmail.com" target="_blank">
+                <img
+                  src="https://img.icons8.com/pastel-glyph/64/ccd6f6/mail-account.png "
+                  className="w-[20px] h-[20px] font-bold"
+                  alt="mail"
+                />
+              </a>
+            </li>
             <li className="cursor-pointer hover:text-textgreen">
               <a
                 href="https://www.instagram.com/ajit__patil___/"

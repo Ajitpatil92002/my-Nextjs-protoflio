@@ -30,10 +30,7 @@ const Nopage = () => {
                     transition-all duration-200 delay-100"
             >
               <div className="rounded-xl bg-green-tint px-3 py-2 md:py-4">
-                <i
-                  className="mdi mdi-home-outline mx-auto 
-                            text-green text-xl md:text-2xl"
-                ></i>
+                <span className="text-4xl text-textlightWhite">&#171;</span>
               </div>
 
               <div className="grow flex flex-col pl-5 pt-2">
@@ -49,11 +46,52 @@ const Nopage = () => {
                   Everything starts here
                 </div>
               </div>
+            </div>
+            <div
+              className="flex flex-row group px-4 py-8
+                    border-t hover:cursor-pointer border-t-green
+                    transition-all duration-200 delay-100"
+            >
+              <div className="rounded-xl bg-green-tint px-3 py-2 md:py-4">
+                <span className="text-4xl text-textlightWhite">&#171;</span>
+              </div>
 
-              <i
-                className="mdi mdi-chevron-right text-gray-400 mdi-24px my-auto pr-2
-                        group-hover:text-gray-700 transition-all duration-200 delay-100"
-              ></i>
+              <div className="grow flex flex-col pl-5 pt-2">
+                <div className="font-bold text-sm md:text-lg lg:text-xl group-hover:underline text-green opacity-70">
+                  <Link href={"/project"}>Projects</Link>
+                </div>
+
+                <div
+                  className="font-semibold text-sm md:text-md lg:text-lg
+                            text-gray-400 group-hover:text-gray-500
+                            transition-all duration-200 delay-100"
+                >
+                  My All Projects
+                </div>
+              </div>
+            </div>
+            <div
+              className="flex flex-row group px-4 py-8
+                    border-t hover:cursor-pointer border-t-green
+                    transition-all duration-200 delay-100"
+            >
+              <div className="rounded-xl bg-green-tint px-3 py-2 md:py-4">
+                <span className="text-4xl text-textlightWhite">&#171;</span>
+              </div>
+
+              <div className="grow flex flex-col pl-5 pt-2">
+                <div className="font-bold text-sm md:text-lg lg:text-xl group-hover:underline text-green opacity-70">
+                  <Link href={"/contact"}>Contact</Link>
+                </div>
+
+                <div
+                  className="font-semibold text-sm md:text-md lg:text-lg
+                            text-gray-400 group-hover:text-gray-500
+                            transition-all duration-200 delay-100"
+                >
+                  My Contact
+                </div>
+              </div>
             </div>
           </div>
         </div>

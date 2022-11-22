@@ -1,14 +1,18 @@
 import { useState } from "react";
 import Alert from "../components/Alert";
 import Navbar from "../components/Navbar";
+import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactPage = () => {
   const [contactDetails, setContactDetails] = useState({
     username: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   });
+  const [verfied, setVerifed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -27,9 +31,16 @@ const ContactPage = () => {
       setContactDetails({
         username: "",
         email: "",
+        phone: "",
         subject: "",
         message: "",
       });
+      await emailjs.send(
+        "service_55ag8mc",
+        `template_0weu9tl`,
+        contactDetails,
+        "oWg9F0R6J6JNHj4OT"
+      );
       setSuccess(true);
       setLoading(false);
     } catch (err) {
@@ -94,6 +105,24 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <label
+                        htmlFor="phone"
+                        className="block font-semibold mt-3"
+                      >
+                        Phone
+                      </label>
+                      <input
+                        type="phone"
+                        placeholder="phone"
+                        name="phone"
+                        id="phone"
+                        onChange={handleOnchange}
+                        value={contactDetails.phone}
+                        className="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-green-tint rounded-md caret-navy-blue text-navy-blue"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
                         htmlFor="subject"
                         className="block font-semibold mt-3"
                       >
@@ -138,10 +167,19 @@ const ContactPage = () => {
                         handleAlert={handleAlert}
                       />
                     )}
-                    <div className="flex justify-between items-baseline mt-4">
+
+                    <div className="flex justify-between md:items-center flex-col md:flex-row mt-4">
+                      <ReCAPTCHA
+                        className="mt-2"
+                         sitekey="6LeXqCcjAAAAAG-2ebSO5G9fJDCTjok0lVj-dEkH"
+                        // sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                        onChange={() => {
+                          setVerifed(true);
+                        }}
+                      />
                       <button
                         type="submit"
-                        disabled={loading}
+                        disabled={loading || !verfied}
                         className="mt-4 border disabled:cursor-not-allowed font-mono border-green hover:bg-green-tint text-white py-2 px-6 rounded-lg block"
                       >
                         Submit
