@@ -4,7 +4,13 @@ import Navbar from "../components/Navbar";
 import emailjs from "@emailjs/browser";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const ContactPage = () => {
+const ContactPage = ({
+  ReCAPTCHA_sitekey_PROD,
+  ReCAPTCHA_SiteKey,
+  Emailjs_key,
+  Emailjs_SeriviveID,
+  Emailjs_TemplateID,
+}) => {
   const [contactDetails, setContactDetails] = useState({
     username: "",
     email: "",
@@ -36,10 +42,10 @@ const ContactPage = () => {
         message: "",
       });
       await emailjs.send(
-        "service_55ag8mc",
-        `template_0weu9tl`,
+        `${Emailjs_SeriviveID}`,
+        `${Emailjs_TemplateID}`,
         contactDetails,
-        "oWg9F0R6J6JNHj4OT"
+        `${Emailjs_key}`
       );
       setSuccess(true);
       setLoading(false);
@@ -171,8 +177,8 @@ const ContactPage = () => {
                     <div className="flex justify-between md:items-center flex-col md:flex-row mt-4">
                       <ReCAPTCHA
                         className="mt-2"
-                         sitekey="6LeXqCcjAAAAAG-2ebSO5G9fJDCTjok0lVj-dEkH"
-                        // sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                        sitekey={`ReCAPTCHA_sitekey_PROD`}
+                        // sitekey={`${process.env.ReCAPTCHA_sitekey}`} //for testing
                         onChange={() => {
                           setVerifed(true);
                         }}
@@ -197,3 +203,20 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
+
+export const getStaticProps = async (ctx) => {
+  const ReCAPTCHA_SiteKey = process.env.ReCAPTCHA_sitekey;
+  const ReCAPTCHA_sitekey_PROD = process.env.ReCAPTCHA_sitekey_PROD;
+  const Emailjs_key = process.env.Emailjs_key;
+  const Emailjs_SeriviveID = process.env.Emailjs_SeriviveID;
+  const Emailjs_TemplateID = process.env.Emailjs_TemplateID;
+  return {
+    props: {
+      ReCAPTCHA_sitekey_PROD,
+      ReCAPTCHA_SiteKey,
+      Emailjs_key,
+      Emailjs_SeriviveID,
+      Emailjs_TemplateID,
+    },
+  };
+};
